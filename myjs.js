@@ -67,10 +67,8 @@ $(document).ready(function() {
 
     $(document).on('click', '.delete_data', function(){
         var contacts_id = $(this).attr("id");
-        alert(contacts_id);
         swal({
             title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -85,7 +83,7 @@ $(document).ready(function() {
                             $("#contacts_table").load("http://localhost/pdo/crud_action.php #contacts_table")
                         }
                     })
-                    swal("Poof! Your imaginary file has been deleted!", {
+                    swal("Delete succeed!", {
                     icon: "success",
                 });
                 } else {

@@ -6,7 +6,7 @@ function pdo_connect_mysql()
     $serverName = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "dbrud";
+    $dbname = "dbcrud";
 
     try {
         return new PDO('mysql:host=' . $serverName . ';dbname=' . $dbname . ';charset=utf8', $username, $password);
