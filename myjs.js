@@ -11,11 +11,13 @@ $(document).ready(function() {
 
     $(document).on('submit', '#contact_form', function(event){
         event.preventDefault();
+        var id = $('#contacts_id').val();
         var name = $('#name').val();
         var email = $('#email').val();
         var phone = $('#phone').val();
         var title = $('#title').val();
         var created = $('#created').val();
+        console.log(id)
         if(name && email && phone && title && created != '')
         {
             $.ajax({
@@ -25,6 +27,7 @@ $(document).ready(function() {
                 contentType:false,
                 processData:false,
                 success:function(data){
+                    console.log(data)
                     $('#contact_form')[0].reset();
                     $("#contactModal").modal("hide");
                     $("#contacts_table").load("http://localhost/pdo/crud_action.php #contacts_table")
@@ -42,7 +45,6 @@ $(document).ready(function() {
 
     $(document).on('click', '.edit_data', function(){
         var contacts_id = $(this).attr("id");
-        alert(contacts_id);
         $('.modal-title').text("Edit Contacts");
         $('#operation').val("edit");
         $('#action').val("Update");
@@ -57,15 +59,15 @@ $(document).ready(function() {
                     $("#email").val(data.email);
                     $("#phone").val(data.phone);
                     $("#title").val(data.title);
-                    $("#created").val(data.created);
-                    $("#contacts_id").val(data.id);
+                    $("#contacts_id").val(contacts_id);
+                    $("#created").val(date(data.created));
                 }
             });
     });
 
     $(document).on('click', '.delete_data', function(){
         var contacts_id = $(this).attr("id");
-        alert("deleted");
+        alert(contacts_id);
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this imaginary file!",

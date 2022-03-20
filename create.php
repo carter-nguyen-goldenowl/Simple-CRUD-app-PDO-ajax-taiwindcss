@@ -21,9 +21,10 @@ if(isset($_POST['operation']))
         $email = isset($_POST['email']) ? $_POST['email'] : '';
         $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
         $title = isset($_POST['title']) ? $_POST['title'] : '';
+        $id = isset($_POST['contacts_id']) ? $_POST['contacts_id'] : 'auto';
         $created = isset($_POST['created']) ? $_POST['created'] : date('dd-mm-YYYY');
-        $stmt = $pdo->prepare("UPDATE contacts VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->execute(["auto", $name, $email, $phone, $title, $created]);
+        $stmt = $pdo->prepare("UPDATE contacts SET name=?, email=?, phone=?, title=?, created=? where id = ?");
+        $stmt->execute([$name, $email, $phone, $title, $created , $id]);
     }
 }
 
